@@ -5,10 +5,10 @@
 </h4>
 
 <p align="center">
- <a href="https://www.linkedin.com/in/andr%C3%A9filipeprogrammer/">Autor</a>
+ <a href="https://www.linkedin.com/in/andr%C3%A9filipeprogrammer/">Author</a>
 </p>
 
-### 🛠 Tecnologias
+### 🛠 Technologies
 
 These tools were used in the construction of the projects:
 
