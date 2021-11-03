@@ -27,7 +27,7 @@ Exemplo: SELECT * FROM person.person WHERE lastName = 'miller'; --Faz uma pesqui
 Exemplo2: SELECT * FROM person.person WHERE lastName = 'miller' AND firstName = 'anna'; --
 --Pesquisa por todos nesta tabela com nome "anna" e sobrenome "miller".
 
-Exemplo3: SELECT * FROM production.Product WHERE color = 'blue' or color = 'black'; --Pesquisa na tabela
+Exemplo3: SELECT * FROM production.Product WHERE color = 'blue' OR color = 'black'; --Pesquisa na tabela
 --production.Product por todos os itens que tenham a cor azul ou preto.
 
 Exemplo4: SELECT * FROM production.Product WHERE listPrice > 1500; -- Seleciona todos os produtos
@@ -165,3 +165,60 @@ Exemplo4: SELECT TOP 10 AVG(lineTotal) AS "precoMinimo" FROM sales.SalesOrderDet
 
 -- GROUP BY
 
+Exemplo1: SELECT * FROM sales.SalesOrderDetail GROUP BY productID; -- Seleciona todos os registros da tabela agrupando por produto.
+
+Exemplo2: SELECT specialOfferID, SUM(unitPrice) AS "SOMA" FROM sales.SalesOrderDetail GROUP BY specialOfferID; -- Seleciona todos os registros da tabela agrupando por produto.
+
+Exemplo3: SELECT productID, COUNT(productID) AS "CONTAGEM" FROM sales.SalesOrderDetail GROUP BY productID; -- Seleciona todos os registros da tabela agrupando por produto.
+
+Exemplo4: SELECT firstName, COUNT(firstName) AS "CONTAGEM" FROM person.person GROUP BY firstName; -- Seleciona todos os registros da tabela agrupando por nomes.
+
+Exemplo5: SELECT color,AVG(listPrice) AS "PRECO" FROM production.Product WHERE color = 'silver' GROUP BY color; -- Seleciona todos os registros da tabela agrupando por cores. Lembrando que "AVG" tira a média.
+
+/*Desafio[15] => Quantas pessoas tem o middleName agrupadas por o middleName*/
+
+#Resposta[15] -> SELECT middleName,COUNT(firstName) AS "QUANTIDADE",FROM person.person GROUP BY middleName;
+
+/*Desafio[16] => Qual a quantidade em média que cada produto é vendido na loja?*/
+
+#Resposta[16] -> SELECT productID,AVG(orderQty) AS "MEDIA" FROM sales.SalesOrderDetail GROUP BY productID;
+
+/*Desafio[17] => Quais foram as 10 vendas que no total tiveram os maiores valores de venda por produto do maior valor para o menor?*/
+
+#Resposta[17] -> SELECT TOP 10 productID,SUM(lineTotal) AS "TOTAL" FROM sales.SalesOrderDetail GROUP BY productID ORDER BY TOTAL DESC;
+
+/*Desafio[18] => Quantos produtos, qual produto e qual a quantidade média de produtos que temos cadastrados nas nossas ordem de serviços? agrupados por productID*/
+
+#Resposta[18] -> SELECT productID,COUNT(productID) AS "CONTAGEM",AVG(orderQty) AS "MEDIA" FROM production.WorkOrder GROUP BY productID;
+
+-- HAVING
+
+Exemplo1: SELECT firstName, count(firstName) FROM person.person GROUP BY firstName HAVING COUNT(firstName) > 10; -- Seleciona todos os registros da tabela agrupando por nomes e somando o número de registros que tenham o nome. Se o número de registros for maior que 10, ele será selecionado.
+
+Exemplo2: SELECT productID,SUM(lineTotal) AS "TOTAL" GROUP BY productID HAVING SUM(lineTotal) BETWEEN 162000 AND 500000; -- Seleciona todos os registros da tabela agrupando por produto e somando o valor total de cada produto. Se o valor total for entre 162000 e 500000, ele será selecionado.
+
+Exemplo3: SELECT firstName,COUNT(firstName) AS "CONTAGEM" FROM person.person WHERE title = 'Mr.' GROUP BY firstName HAVING COUNT(firstName) > 10; -- Seleciona todos os registros da tabela agrupando por nomes e somando o número de registros que tenham o nome. Se o número de registros for maior que 10, ele será selecionado.
+
+/*Desafio[19] => Estamos querendo identificar as provincias(stateProvinceID) com o maior número de cadastros no nosso sistema, então é preciso encontrar quais províncias(stateProvinceID) estão registradas no banco de dados mais que 1000 vezes.*/
+
+#Resposta[19] -> SELECT stateProvinceID,COUNT(*) AS "CONTAGEM" FROM person.Address GROUP BY stateProvinceID HAVING COUNT(*) > 1000;
+
+/*Desafio[20] => Sabendo que se trata de uma multinacional, os gerentes querem saber quais produtos(productID) não estão trazendo em média no mínimo 1 milhão em total de vendas(lineTotal)*/
+
+#Resposta[20] -> SELECT productID,AVG(lineTotal) AS "MEDIA" FROM sales.SalesOrderDetail GROUP BY productID HAVING AVG(lineTotal) < 1000000;
+
+-- AS -> Serve para nada mais nada menos que renomear uma coluna. (...)
+
+Exemplo1: SELECT TOP 10 listPrice AS "Preço" FROM production.Product; -- Altera o nome da coluna para "Preço" no resultado da Query.
+
+Exemplo2: SELECT TOP 10 AVG(listPrice) AS "Preço Médio" FROM production.Product; -- Altera o nome da coluna para "Preço Médio" no resultado da Query.
+
+-- INNER JOIN
+
+Exemplo1: SELECT p.businessEntityID,p.firstName,p.lastName,pe.emailAddress FROM person.person AS "P" INNER JOIN person.EmailAddress AS "PE" ON p.businessEntityID = pe.businessEntityID;
+
+Exemplo2: SELECT pr.listPrice,pr.name,pc.name FROM production.Product AS "PR" INNER JOIN production.ProductSubCategory AS "PC" ON pr.productSubCategoryID = pc.productSubCategoryID;
+
+Exemplo3: SELECT TOP 10 * FROM person.BusinessEntityAddress AS "BA" INNER JOIN person.Address AS "PA" ON BA.AddressID = BA.AddressID;
+
+Exemplo4: 
