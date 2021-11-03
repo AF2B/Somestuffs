@@ -100,3 +100,68 @@ para o mais barato.*/
 /*Desafio [8] => Obter o nome e numero do produto dos produtos que tem o ProductID entre 1~4*/
 
 #Resposta[8] -> SELECT ProductID, productName FROM production.Product WHERE ProductID BETWEEN 1 AND 4;
+
+-- BETWEEN
+
+-- Usando para encontrar entre um valor mínimo e um máximo.
+
+Exemplo1: SELECT * FROM production.Product WHERE listPrice BETWEEN 1000 AND 1500; -- Seleciona todos os produtos que tem o preço entre 1000 e 1500.
+
+--Caso queira encontrar NÃO entre 1000 e 1500 ou sejá lá qual for o valor, basta utilizar o NOT.
+
+Exemplo2: SELECT * FROM production.Product WHERE listPrice NOT BETWEEN 1000 AND 1500;
+
+Exemplo3: SELECT * FROM humanResources.Employee WHERE hireDate BETWEEN '2000-01-01' AND '2000-12-31' ORDER BY hireDate; -- Seleciona todos os empregados que se contratou entre o ano 2000.
+
+-- IN
+
+Exemplo1: SELECT * FROM person.person WHERE businessEntityID IN (2, 7, 13); -- Seleciona todos os registros da tabela que tenham o businessEntityID 2, 7 e 13.
+
+-- LIKE
+
+Exemplo1: SELECT * FROM person.person WHERE firstName LIKE 'ovi%'; -- Seleciona todos os registros da tabela que tenham o primeiro nome que comece com o caracter 'ovi'.
+
+Exemplo2: SELECT * FROM person.person WHERE firstName LIKE '%to'; -- Seleciona todos os registros da tabela que tenham o primeiro nome que termine com o caracter 'to'.
+
+Exemplo3: SELECT * FROM person.person WHERE firstName LIKE '%essa%'; -- Seleciona todos os registros da tabela que tenham o primeiro nome que contenha a palavra 'essa'.
+
+Exemplo4: SELECT * FROM person.person WHERE firstName LIKE '%to_'; -- Seleciona todos os registros da tabela se limitando ao 'to' e nunca mais do que isso.
+
+/*Desafio[9] => Quantos produtos temos cadastrados no sistema que custam mais que 1500 dolares?*/
+
+#Resposta[9] -> SELECT COUNT(listPrice) FROM production.Product WHERE listPrice > 1500;
+
+/*Desafio [10] => Quantas pessoas temos com o sobrenome que inicia com a letra P?*/
+
+#Resposta[10] -> SELECT COUNT(lastName) FROM person.person WHERE lastName LIKE 'P%';
+
+/*Desafio [11] => Em quantas cidades únicas estão cadastrados nossos clientes?*/
+
+#Resposta[11] -> SELECT COUNT(DISTINCT city) FROM person.Address;
+
+/*Desafio [12] => Quais são as cidades únicas que temos cadastrados em nosso sistema?*/
+
+#Resposta[12] -> SELECT DISTINCT city FROM person.Address;
+
+/*Desafio [13] => Quantos produtos vermelhos tem o preço entre 500 a 1000 dolares?*/
+
+#Resposta [13] -> SELECT COUNT(*) FROM production.Product WHERE color = 'red' AND listPrice BETWEEN 500 AND 1000;
+
+/*Desafio [14] => Quantos produtos tem a palavra 'road' no nome deles?*/
+
+#Resposta [14] -> SELECT COUNT(*) FROM production.Product WHERE productName LIKE '%road%';
+
+-- MIN MAX SUM AVG
+
+-- São funções de agregação que retornam o valor mínimo, máximo, soma, média, etc.
+
+Exemplo1: SELECT TOP 10 SUM(lineTotal) AS "somaTotal" FROM sales.SalesOrderDetail; -- Seleciona a soma dos valores de todos os registros da tabela.
+
+Exemplo2: SELECT TOP 10 MIN(lineTotal) AS "precoMinimo" FROM sales.SalesOrderDetail;-- Seleciona o valor mínimo dos preços dos produtos.
+
+Exemplo3: SELECT TOP 10 MAX(lineTotal) AS "precoMinimo" FROM sales.SalesOrderDetail; -- Seleciona o valor máximo dos preços dos produtos.
+
+Exemplo4: SELECT TOP 10 AVG(lineTotal) AS "precoMinimo" FROM sales.SalesOrderDetail; -- Seleciona a média dos preços dos produtos.
+
+-- GROUP BY
+
