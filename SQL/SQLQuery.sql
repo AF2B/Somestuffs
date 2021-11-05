@@ -221,4 +221,15 @@ Exemplo2: SELECT pr.listPrice,pr.name,pc.name FROM production.Product AS "PR" IN
 
 Exemplo3: SELECT TOP 10 * FROM person.BusinessEntityAddress AS "BA" INNER JOIN person.Address AS "PA" ON BA.AddressID = BA.AddressID;
 
-Exemplo4: 
+Exemplo4: SELECT TOP 10 PA.AddressID,PA.city,PS.stateProvinceID,PS.name FROM person.Address AS "PA" INNER JOIN person.StateProvince AS "PS" ON PS.stateProvinceID = PA.stateProvinceID;
+
+-- O INNER JOIN retorna apenas os resultados que correspondem (existem) entre as duas tabelas.
+-- Exemplo: SELECT * FROM person.person AS "P" INNER JOIN person.EmailAddress AS "PE" ON P.businessEntityID = PE.businessEntityID;
+
+
+-- FULL OUTER JOIN retorna todos os resultados que existem entre as duas tabelas. Além disso, se não houverem valores correspondentes, ele retorna como NULL.
+-- Exemplo: SELECT * FROM person.person AS "P" FULL OUTER JOIN person.EmailAddress AS "PE" ON P.businessEntityID = PE.businessEntityID;
+
+-- LEFT OUTER JOIN retorna um conjunto de todos os registros da "tabelaA", e além disso, os registros correspondentes(quando disponiveis) da "tabelaB". Se não houver registros correspondentes ele simplesmente retorna como NULL.
+-- Exemplo: SELECT * FROM person.person AS "P" LEFT OUTER JOIN person.EmailAddress AS "PE" ON P.businessEntityID = PE.businessEntityID;
+
