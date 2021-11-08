@@ -233,3 +233,87 @@ Exemplo4: SELECT TOP 10 PA.AddressID,PA.city,PS.stateProvinceID,PS.name FROM per
 -- LEFT OUTER JOIN retorna um conjunto de todos os registros da "tabelaA", e além disso, os registros correspondentes(quando disponiveis) da "tabelaB". Se não houver registros correspondentes ele simplesmente retorna como NULL.
 -- Exemplo: SELECT * FROM person.person AS "P" LEFT OUTER JOIN person.EmailAddress AS "PE" ON P.businessEntityID = PE.businessEntityID;
 
+-- LEFT JOIN
+-- Exemplo: SELECT * FROM person.person AS "PP" LEFT JOIN sales.PersonCreditCard AS "PC" ON PP.businessEntityID = PC.businessEntityID;
+
+-- UNION Combina dois ou mais resultados de um select em um resultado único.
+Exemplo1: SELECT coluna1, coluna2 FROM tabela1 UNION SELECT coluna3, coluna4 FROM tabela2;
+
+Exemplo2: SELECT coluna1, coluna2 FROM tabela1 UNION SELECT coluna3, coluna4 FROM tabela2 UNION SELECT coluna5, coluna6 FROM tabela3;
+
+Exemplo3: SELECT productID, name, productNumber FROM production.Product WHERE name LIKE '%Chain%' UNION SELECT productID, name, productNumber FROM production.Product WHERE NAME LIKE '%Decal%';
+
+Exemplo4: SELECT firstName, title FROM person.person WHERE title = 'Mr.' UNION SELECT firstName, title, middleName FROM person.person WHERE middleName = 'A';
+
+--DATEPART (https://docs.microsoft.com/pt-br/sql/t-sql/functions/datepart-transact-sql?view=sql-server-ver15)
+
+Exemplo1: SELECT salesOrderID, DATEPART(MONTH,orderDate) AS mes FROM sales.SalesOrderHeader;
+
+Exemplo2: SELECT AVG(totalDue) AS "media",DATEPART(MONTH,orderDate) AS mes FROM sales.SalesOrderHeader GROUP BY DATEPART(MONTH,orderDate) ORDER BY mes;
+
+Exemplo3: SELECT AVG(totalDue) AS "media",DATEPART(YEAR,orderDate) AS mes FROM sales.SalesOrderHeader GROUP BY DATEPART(YEAR,orderDate) ORDER BY mes;
+
+Exemplo4: Exemplo2: SELECT AVG(totalDue) AS "media",DATEPART(DAY,orderDate) AS mes FROM sales.SalesOrderHeader GROUP BY DATEPART(DAY,orderDate) ORDER BY mes;
+
+-- OPERAÇÕES EM STRINGS (https://docs.microsoft.com/pt-br/sql/t-sql/functions/string-functions?view=sql-server-ver15)
+
+Exemplo1: SELECT CONCAT(firstName, ' ', lastName) AS "Nome Completo" FROM person.person;
+
+Exemplo2: SELECT UPPER(firstName, ' ', lastName) AS "Nome Completo" FROM person.person;
+
+Exemplo3: SELECT LOWER(firstName, ' ', lastName) AS "Nome Completo" FROM person.person;
+
+Exemplo4: SELECT LEN(firstName) AS "Nome Completo" FROM person.person; -- Conta a quantidade de caracteres da string.
+
+Exemplo5: SELECT firstName, SUBSTRING(firstName, 1, 3) AS "Nome Completo" FROM person.person; -- Retorna a substring da string.
+
+Exemplo6: SELECT REPLACE(productNumber, '-','#') FROM production.Product; -- Substitui o caracter "-" por "#".
+
+-- FUNÇÕES MATEMÁTICAS (https://docs.microsoft.com/pt-br/sql/t-sql/functions/mathematical-functions-transact-sql?view=sql-server-ver15)
+
+Exemplo1: SELECT ROUND(lineTotal, 2), lineTotal FROM sales.SalesOrderDetail; -- Arredonda o valor para duas casas decimais.
+
+Exemplo2: SELECT SQRT(lineTotal), lineTotal FROM sales.SalesOrderDetail; -- Retorna a raiz quadrada da coluna "lineTotal".
+
+Exemplo3: SELECT ABS(lineTotal), lineTotal FROM sales.SalesOrderDetail; -- Retorna o valor absoluto da coluna "lineTotal".
+
+-- SUBQUERY ("SUBSELECT")
+
+Exemplo1: SELECT * FROM production.Product WHERE listPrice > (SELECT AVG(listPrice FROM production.Product));
+
+Exemplo2: SELECT firstName FROM person.person WHERE businessEntityID IN (SELECT businessEntityID FROM humanResources.Employee WHERE jobTitle = 'Design Engineer');
+
+/*Desafio[21] => Encontre para mim todos os endereços que estão no estado de 'Alberta', Pode trazer todas as informações.*/
+
+#Resposta[21] -> SELECT * FROM person.Address WHERE stateProvinceID IN (SELECT stateProvinceID FROM person.StateProvince) WHERE name = 'Alberta');
+
+-- SELF-JOIN
+
+Sintaxe: SELECT coluna1 FROM tabelaA, tabelaB WHERE condicao;
+
+Exemplo1: SELECT A.productID, A.discount, B.productID, B.discount FROM orderDetails AS "A", orderDetails AS "B" WHERE A.discount = B.discount; -- Retorna todos os registros que possuem o mesmo valor de desconto.
+
+-- TIPOS DE DADOS
+
+-- Sendo eles -> 1.Boleanos; 2.Caracteres; 3.Números; 4.Temporais
+
+-- 1. Por padrão ele é inicializado como nulo, e pode receber tanto 1 ou 0. Ele é representado por BIT
+
+-- 2. Representado por CHAR(n) onde n é o número de caracteres. -- Exemplo: CHAR(10) -- Exemplo: CHAR(20)
+
+-- 3. TINYINT(n) -> Representa um número de até 8 bits. -- Exemplo: TINYINT(3) -- Exemplo: TINYINT(5)
+-- 3. SMALLINT(n) -> Representa um número de até 16 bits. -- Exemplo: SMALLINT(3) -- Exemplo: SMALLINT(5)
+-- 3. INT(n) -> Representa um número de até 32 bits. -- Exemplo: INT(3) -- Exemplo: INT(5)
+-- 3. BIGINT(n) -> Representa um número de até 64 bits. -- Exemplo: BIGINT(3) -- Exemplo: BIGINT(5)
+-- 3. NUMERIC OU DECIMAL -> Representa um número de até 65 bits. -- Exemplo: NUMERIC(3) -- Exemplo: NUMERIC(5) -- Exemplo: DECIMAL(3) -- Exemplo: DECIMAL(5)
+-- 3. REAL -> Representa um número de até 24 bits. -- Exemplo: REAL(3) -- Exemplo: REAL(5)
+-- 3. FLOAT -> Representa um número de até 53 bits. -- Exemplo: FLOAT(3) -- Exemplo: FLOAT(5)
+
+-- 4. DATE -> Representa um número de até 32 bits. -- Exemplo: DATE(3) -- Exemplo: DATE(5)
+-- 4. DATETIME -> Representa um número de até 64 bits. -- Exemplo: DATETIME(3) -- Exemplo: DATETIME(5) Armazena data e horas no formato aaaa/mm/dd:hh:mm:ss
+-- 4. DATETIME2 -> Representa um número de até 64 bits. -- Exemplo: DATETIME2(3) -- Exemplo: DATETIME2(5) Armazena data e horas no formato aaaa/mm/dd:hh:mm:ss.sssssss
+-- 4. SMALLDATETIME -> Data e hora respeitando o limite entre '1900-01-01:00:00:00' ate '2079-06-06:23:59:59'
+-- 4. TIME -> horas, minutos, segundos e milissegundos, respeitando o limite de '00:00:0000000' to '23:59:59:9999999'
+-- 4. DATETIMEOFFSET -> Permite armazenar informações de data e hora incluindo o fuso horário.
+
+-- CHAVE PRIMÁRIA E ESTRANGEIRA
