@@ -317,3 +317,164 @@ Exemplo1: SELECT A.productID, A.discount, B.productID, B.discount FROM orderDeta
 -- 4. DATETIMEOFFSET -> Permite armazenar informações de data e hora incluindo o fuso horário.
 
 -- CHAVE PRIMÁRIA E ESTRANGEIRA
+
+ExemploPrático: CREATE TABLE nome_Tabela (
+    nomeColuna tipoDeDados PRIMARY KEY
+    nomeColuna tipoDeDados ...
+)
+
+* Uma chave estrangeira é uma coluna ou grupo de colunas em uma tabela que identifica unicamente uma linha em outra tabela.
+
+* Ou seja, uma chave estrangeira é definida em uma tabela onde ela é apenas uma referência e não contem todos os dados ali.
+
+* Então uma chave estrangeira é simplesmente uma coluna ou grupo de colunas que é uma chave primária em outra tabela.
+
+* A tabela que contem a chave estrangeira é chamada de tabela referênciadora ou tabela filho. E a tabela na qual a chave estrangeira é referênciada é chamada de tabela pai.
+
+* Uma tabela pode ter mais de uma chave estrangeira dependendo de seu relacionamento com as outras tabelas.
+
+* No exemplo, a tabela "Pessoa" possui uma chave estrangeira "Endereco" que é uma chave primária na tabela "Endereco".
+
+* Uma restrição de chave estrangeira indica que uma tabela pode ter mais de uma chave estrangeira.
+
+
+-- CREATE TABLE
+
+Exemplo1: CREATE TABLE nome_Tabela (
+    nomeColuna tipoDeDados PRIMARY KEY
+    nomeColuna tipoDeDados ...
+    nomeColuna tipoDeDados restricaoDaColuna
+);
+
+/*Principais tipos de restrições que podem ser aplicadas
+1. NOT NULL -> Não pode ser nulo.
+2. UNIQUE -> Não pode ser repetido. "Força para que todos os valores em uma coluna não sejam iguais."
+3. CHECK -> Verifica se o valor da coluna é válido.
+4. FOREIGN KEY -> Chave estrangeira.
+5. PRIMARY KEY -> Chave primária.
+6. DEFAULT -> Valor padrão.
+7. AUTO_INCREMENT -> Valor que é incrementado automaticamente.
+*/
+
+Exemplo2: CREATE TABLE Canal (
+    CanalID INT PRIMARY KEY,
+    Nome VARCHAR(150) NOT NULL,
+    ContagemIns INT DEFAULT 0,
+    DataCriacao DATETIME NOT NULL
+);
+
+Exemplo2: CREATE TABLE Video(
+    VideoID INT PRIMARY KEY,
+    Nome VARCHAR(150) NOT NULL,
+    Visualizacoes INT DEFAULT 0,
+    Likes INT DEFAULT 0,
+    Deslikes INT DEFAULT 0,
+    Duracao INT NOT NULL,
+    CanalID INT FOREIGN KEY REFERENCES Canal(CanalID)
+);
+
+-- INSERT INTO
+
+Exemplo1: INSERT INTO nomeTabela(coluna1, coluna2,...) VALUES(valor1, valor2);
+
+Exemplo2: INSERT INTO nomeTabela(coluna1, coluna2,...)
+    VALUES(valor1, valor2),
+    (valor3, valor4),
+    (valor5, valor6);
+
+Exemplo3: CREATE TABLE aula(
+    ID INT PRIMARY KEY,
+    nome VARCHAR(200)
+);
+
+Exemplo3: INSERT INTO aula (ID, nome) VALUES (1, 'aula 1');
+
+Exemplo3: INSERT INTO aula(ID, nome)
+        VALUES(2, 'aula 2'),
+            (3, 'aula 3'),
+            (4, 'aula 4');
+
+Exemplo4: SELECT * INTO tabelaNova FROM aula;
+
+-- UPDATE
+
+Exemplo1: UPDATE nomeTabela SET coluna1 = valor1, coluna2 = valor2, ... WHERE condicao;
+
+Exemplo2: UPDATE aula SET nome = 'aula 0' WHERE ID = 1;
+
+-- DELETE
+
+Exemplo1: DELETE FROM nomeDaTabela WHERE condicao;
+
+Exemplo2: DELETE FROM aula WHERE nome = 'aula 0';
+
+-- ALTER TABLE -- Alteração de colunas e restrições
+
+Exemplo1: ALTER TABLE nomeDaTabela ADD COLUNA nomeDaColuna tipoDeDados;
+
+* Exemplos do que pode se pode ser feito:
+1. Adicionar, remover ou alterar uma coluna.
+2. Adicionar, remover ou alterar uma restrição.
+3. Renomear uma tabela.
+
+Exemplo2: CREATE TABLE yt (
+    ID INT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL UNIQUE,
+    categoria VARCHAR(200) NOT NULL,
+    dataCriacao DATETIME NOT NULL
+);
+
+Exemplo2: ALTER TABLE yt ADD ativo BIT;
+
+Exemplo2: ALTER TABLE yt ALTER COLUMN categoria VARCHAR(300) NOT NULL;
+
+Exemplo2: EXEC sp_RENAME 'nomeTabela.nomeColunaAtual', 'nomeColunaNova', 'COLUMN';
+
+Exemplo2: EXEC sp_RENAME 'yt.nome', 'nomeCanal', 'COLUMN';
+
+Exemplo2: EXEC sp_RENAME 'nomeTabelaAtual', 'nomeTabelaNova';
+
+Exemplo2: EXEC sp_RENAME 'yt', 'Youtube';
+
+-- DROP TABLE
+
+Exemplo1: DROP TABLE nomeDaTabela; -- Você só consegue deletar tabelas que não são referênciadas por outras.
+
+Exemplo2: DROP TABLE IF EXISTS nomeDaTabela; -- Se a tabela existir, ela é deletada.
+
+Exemplo3: DROP TABLE Youtube;
+
+Exemplo4: TRUNCATE TABLE person.Password; -- Limpa todos os dados da tabela.
+
+-- CHECK CONSTRAINT -- Verificação de restrições
+
+Exemplo1: CREATE TABLE carteiraMotorista(
+    ID INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    idade INT CHECK (idade >= 18)
+);
+
+-- NOT NULL CONSTRAINT -- Restrição NOT NULL
+
+-- Não permite que falte informações ao tentar inserir dados em campos "NOT NULL". não pode haver campo vazios.
+
+
+-- UNIQUE CONSTRAINT -- Restrição UNIQUE
+
+CREATE TABLE carteiraMotorista(
+    ID INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    idade INT CHECK (idade >= 18),
+    codigoCNH INT NOT NULL UNIQUE
+);
+
+-- Não permite dados iguais.
+
+
+-- VIEWS -- Criação de vistas
+
+Exemplo1: CREATE VIEW [pessoas simplificado] AS SELECT firstName, middleName, lastName FROM person.Person WHERE title = 'Ms.';
+
+-- e para visualizar esta view criada, basta acessar.
+
+SELECT * FROM [pessoas simplificado];
