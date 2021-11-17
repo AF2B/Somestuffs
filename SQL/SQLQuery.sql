@@ -320,7 +320,7 @@ Exemplo1: SELECT A.productID, A.discount, B.productID, B.discount FROM orderDeta
 
 ExemploPrático: CREATE TABLE nome_Tabela (
     nomeColuna tipoDeDados PRIMARY KEY
-    nomeColuna tipoDeDados ...
+    nomeColuna tipoDeDados NOT NULL
 )
 
 * Uma chave estrangeira é uma coluna ou grupo de colunas em uma tabela que identifica unicamente uma linha em outra tabela.
