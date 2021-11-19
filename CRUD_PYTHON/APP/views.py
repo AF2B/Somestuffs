@@ -1,22 +1,22 @@
 from django.shortcuts import render, redirect
-from APP.forms import Carrosform
-from APP.models import Carros
+from APP.forms import Alunosform
+from APP.models import Alunos
 
 # Create your views here.
 def home(request):
     data = {}
-    data['db'] = Carros.objects.all()
+    data['db'] = Alunos.objects.all()
     return render(request, 'index.html', data)
 
 
 def form(request):
     data = {}
-    data['form'] = Carrosform()
+    data['form'] = Alunosform()
     return render(request, 'form.html', data)
 
 
 def create(request):
-    form = Carrosform(request.POST or None)
+    form = Alunosform(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('home')
@@ -24,14 +24,14 @@ def create(request):
     
 def view(request, pk):
     data = {}
-    data['db'] = Carros.objects.get(pk=pk)
+    data['db'] = Alunos.objects.get(pk=pk)
     return render(request, 'view.html', data)
 
 
 def edit(request, pk):
     data = {}
-    data['db'] = Carros.objects.get(pk=pk)
-    data['form'] = Carrosform(request.POST or None, instance=data['db'])
+    data['db'] = Alunos.objects.get(pk=pk)
+    data['form'] = Alunosform(request.POST or None, instance=data['db'])
     if data['form'].is_valid():
         data['form'].save()
         return redirect('home')
@@ -40,14 +40,14 @@ def edit(request, pk):
 
 def update(request, pk):
     data = {}
-    data ['db'] = Carros.objects.get(pk=pk)
-    form = Carrosform(request.POST or None, instance=data['db'])
+    data ['db'] = Alunos.objects.get(pk=pk)
+    form = Alunosform(request.POST or None, instance=data['db'])
     if form.is_valid():
         form.save()
     return redirect('home')
 
 
 def delete(request, pk):
-    db = Carros.objects.get(pk=pk)
+    db = Alunos.objects.get(pk=pk)
     db.delete()
     return redirect('home')

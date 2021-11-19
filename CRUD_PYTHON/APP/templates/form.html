@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <h1>Cadastro</h1>
+    <div class="col-8 m-auto pt-4 pb-2 text-center alert alert-primary">
+        <h1>CADASTRAR ALUNO</h1>
     </div>
 
     <div class="col-8 m-auto pt-3 pb-2 text-center">
@@ -26,18 +26,18 @@
         {% csrf_token %}
         <!--{{form.as_p}}-->
         <div class="form-group mt-4">
-            Modelo: {{form.modelo}}
+            Nome: {{form.nome}}
         </div>
 
         <div class="form-group">
-            Marca: {{form.marca}}
+            CPF: {{form.cpf}}
         </div>
 
         <div class="form-group">
-            Ano: {{form.ano}}
+            Avaliação: {{form.avaliacao}}
         </div>
 
-        <input type="submit" class="btn btn-success" value="Salvar">
+        <input type="submit" class="btn btn-primary" value="CADASTRAR">
         </form>
     </div>
 

@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Carros(models.Model):
-    modelo = models.CharField(max_length=150)
-    marca = models.CharField(max_length=100)
-    ano = models.IntegerField(max_length=4)
+class Alunos(models.Model):
+    nome = models.CharField(max_length=150)
+    cpf = models.IntegerField(max_length=100)
+    avaliacao = models.IntegerField(max_length=4)
