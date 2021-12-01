@@ -14,3 +14,6 @@
 </p>
 
 <a href="https://www.php.net/manual/pt_BR/index.php">Documentação PHP</a>
+
+
+<h3><strong>OBS: Pasta POO contendo conteúdos básicos Orientado a Objetos.</strong></h3>
