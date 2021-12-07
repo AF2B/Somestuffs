@@ -1,7 +1,7 @@
 # Personal-Projects
 
-<h4 align="center"> 
-	🚧  Websites and some codes in 🚀 Constructs...  🚧
+<h4 align="center">
+	🚧  Codes in 🚀 Constructs...  🚧
 </h4>
 
 <p align="center">
