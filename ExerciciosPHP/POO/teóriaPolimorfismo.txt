@@ -1,0 +1,29 @@
+Tipos de polimorfismo ->
+
+1->Sobreposição: Acontece quando substituímos um metódo de uma superclasse na sua subclasse, usando a mesma assinatura por classe.
+2->Sobrecarga: "Sobrecarregar um metódo", utiliza o mesmo nome, com assinaturas diferentes, dentro da mesma classe.
+
+PHP não possui o polimorfismo de Sobrecarga, gera erro. Apenas o de sobreposição funciona.;
+
+O caminho que você pode seguir a partir disto é:
+
+exemplos: Supondo que uma classe Animal tenha um metódo chamado "reagir" e você tenha que invocar este metódo e adapta-lo conforme necessidade.
+teóricamente você não conseguiria, pois não dá para sobrescrever de maneira que mude as assinaturas. mas para contornar isto, você pode adaptar o nome do metódo para
+reagirTal(){}
+reagirHora(){}
+reagirDono(){}
+reagirChamado(){}
+assim "burlando" esta regra.
+
+
+
+
+
+
+
+
+
+
+
+/////////\\\\\\\///////////\\\\\\\\////////\\\\\\//////////\\\\/////////\\\\\\\\\\\\\////////////\\\\\\\\\/
+*Não esquecer que metódos abstratos, quando se há uma classe que estende ela, deve herdar todos os metódos.*
