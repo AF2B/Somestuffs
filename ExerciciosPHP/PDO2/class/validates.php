@@ -3,6 +3,7 @@
 //http://www.devwilliam.com.br/category/php
 //http://www.devwilliam.com.br/php/curso-php-com-pdo-videos
 //http://www.devwilliam.com.br/php/aprenda-como-validar-dados-com-php
+//https://www.youtube.com/watch?v=rg-f9eelFsY
 
 
 /*Gerando uma senha segura para salvar no banco de dados "sem riscos"
