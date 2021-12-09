@@ -1,5 +1,5 @@
 <?php
-
+/*
 class Animal{
 
     public function Andar(){
@@ -23,4 +23,4 @@ class Cachorro extends Animal{
 }
 
 $cachorro = new Cachorro();
-echo $cachorro->Andar();
+echo $cachorro->Andar();*/
