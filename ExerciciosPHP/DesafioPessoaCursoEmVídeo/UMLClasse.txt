@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -32,4 +33,40 @@ Publicacao
 +folhear()
 +avançarPag()
 +voltarPag()
+=======
+
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Pessoa
+
+-nome
+-idade
+-sexo
+
++fazerAniver()
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Livro
+
+-titulo
+-autor
+-totalPaginas
+-pagAtual
+-aberto
+-leitor
+
++detalhes()
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+<<interface>>
+Publicacao
+
++abrir()
++fechar()
++folhear()
++avançarPag()
++voltarPag()
+>>>>>>> acfd551e775ee186e067248d6676c6dfaf6167a8
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 UML
 
 <<interface>>
@@ -46,4 +47,54 @@ Visualizacao
 
 +avaliar()
 +avaliar(nota)
+=======
+UML
+
+<<interface>>
+
+AcoesVideo
+public play();
+public pause();
+public like();
+
+////////////////
+
+Pessoa
+
+#nome
+#idade
+#sexo
+#experiencia
+
+#ganharExp()
+
+//////////////////
+
+Gafanhoto
+
+-login
+-totAssistindo
+
++viuMaisUm()
+
+////////////////////////////
+
+Video
+
+-titulo
+-avaliacao
+-views
+-curtidas
+-reproduzindo
+
+//////////////////
+
+Visualizacao
+
+-espectador
+-filme
+
++avaliar()
++avaliar(nota)
+>>>>>>> acfd551e775ee186e067248d6676c6dfaf6167a8
 +avaliar(porc)

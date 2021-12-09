@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Tipos de herança 
 1 -> Herança de implementação
 2 -> Herança para diferença
@@ -75,4 +76,83 @@ breve explicação sobre um metódo posto em Bolsista e Aluno -> pagarMensalidad
 
 podemos notar que o metódo já existe em Aluno e o Bolsista herdou este metódo pois a classe extends ele. Mas também não podemos deixar de notar que ele SOBRESCREVEU o metódo.
 
+=======
+Tipos de herança 
+1 -> Herança de implementação
+2 -> Herança para diferença
+
+"Herança pobre" -> (Herança de implementação) é quando uma sub-classe não tem nenhum metódo ou atributo extra nela, apenas o que ela herda da superClasse.
+
+
+Exemplos:
+
+Classe Abstrata -> Não pode ser instanciada. Só pode servir como progenitora.
+
+Metódo Abstrato -> Declarado, mas não implementado na progenitora.
+
+Classe Final -> Não pode ser herdada por outra classe. Obrigatoriamente folha.
+
+Metódo Final -> Não pode ser sobrescrito pelas suas sub-classes. Obrigatoriamente herdado.
+
+
+Exemplo de como funciona -> *Vou 'setar' tudo como público somente para fins didáticos*
+
+Classe abstrata->
+abstract class Pessoa{
+    public nome;
+    public idade;
+    public sexo;
+
+    public function fazerAniversario();
+}
+
+Um exemplo de herança pobre ou herança de implementação->
+class Visitante extends Pessoa{}
+
+Um exemplo de "arvore genealogica" sobre herança onde um extends outro e assim vai herdando coisas um dos outros.
+class Aluno extends Pessoa{
+    public matricula;
+    public curso;
+
+    public function pagarMensalidade(){
+        echo "Pagando a mensalidade do Aluno";
+    }
+}
+
+Aqui a classe Professor tem seus proprios atributos e metódos + os atributos e metódos da classe abstrata Pessoa.
+class Professor extends Pessoa{
+    public especialidade;
+    public salario;
+
+    public function receberAumento(){
+
+    }
+}
+
+
+Aqui um exemplo no qual a classe Aluno que é sub-classe da classe Pessoa, temos uma nova classe que torna a classe Aluno uma superClass. também com seus próprios metodos e atributos.
+class Bolsista extends Aluno{
+    public bolsa;
+
+    public function renovarBolsa(){}
+    public final function pagarMensalidade(){
+        echo "Bolsista paga com disconto";
+    }
+}
+
+
+Mesma ideia teórica da clsse Bolsista.
+class Tecnico extends Aluno{
+    public registroProfissional;
+
+    public function praticar(){}
+}
+
+
+
+breve explicação sobre um metódo posto em Bolsista e Aluno -> pagarMensalidade();
+
+podemos notar que o metódo já existe em Aluno e o Bolsista herdou este metódo pois a classe extends ele. Mas também não podemos deixar de notar que ele SOBRESCREVEU o metódo.
+
+>>>>>>> acfd551e775ee186e067248d6676c6dfaf6167a8
 final -> não permite que este metódo ou classe cujo tenha sido definido como "final" seja sobrescrito.
