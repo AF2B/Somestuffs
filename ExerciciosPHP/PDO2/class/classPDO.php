@@ -1,6 +1,6 @@
 <?php
 
-//DÁ PRA MELHORAR!
+
 class Connect{
     private $host;
     private $dbname;
@@ -138,4 +138,28 @@ Exemplo4 execute();
 $sql = "INSERT INTO pessoa (nome, idade, email) VALUES (:nome, :idade, :email)";
 $stmt= $pdo->prepare($sql);
 $result = $stmt->execute(array(':nome' => $nome, ':idade' => $idade, ':email' => $email));
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+Exemplo fetchAll -> 
+$sql = "SELECT nome, sexo FROM pessoas";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(1, "Fulano");
+$stmt->execute();
+$result = $stmt->fetchAll();
+
+*/
+
+/*exemplo usando fetchAll
+$sql = "SELECT nome, sexo FROM pessoas WHERE nome = ? AND sexo = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(1, "Fulano");
+$stmt->bindValue(2, "M");
+$stmt->execute();
+$result = $stmt->fetchAll();
+*/
+
+/*
+procedures e functions com PDO, banco de dados relacional, SQL
+
+...
 */
