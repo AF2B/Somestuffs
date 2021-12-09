@@ -1,6 +1,6 @@
 <?php
 
-
+//DÁ PRA MELHORAR!
 class Connect{
     private $host;
     private $dbname;
@@ -93,3 +93,49 @@ class Connect{
         return $this->password;
     }
 }
+
+
+/*
+A diferença entre exec(); e execute();
+exec(); -> tem que se trabalhar direto na string, exemplos a seguir...
+execute(); -> podemos passar parametros, exemplos a seguir...
+
+$nome = "FulanoDeTal";
+$sexo = "M";
+$data_nascimento = date('Y-m-d');
+$idade = 99;
+$email = abcde@abcmail.com
+
+Exemplo exec(); -> $sql = $pdo->exec("INSERT INTO clientes (nome, sexo, data_nascimento) VALUES ('$nome', '$sexo', '$data')");
+echo "Linhas afetadas: " . $sql;
+
+Exemplo exec(); 2 -> $sql = $pdo->exec("DELETE FROM clientes WHERE nome = 'Fulano'");
+
+
+Exemplo execute(); -> $sql = "INSERT INTO clientes (nome, sexo, data_nascimento) VALUES(:nome, :sexo, :data_nascimento)";
+$stmt = $this->pdo->prepare($sql);
+$stmt->bindValue(":nome", "fulanoDeTal");
+$stmt->bindValue(":sexo", "M");
+$stmt->bindValue(":data_nascimento", "99/99/9999");
+
+Para ele, você precisa parametrizar "a coisa".
+
+Exemplo2 execute(); ->
+
+$sql = "INSERT INTO pessoa (nome, idade, email) VALUES (?, ?, ?)";
+$stmt = $this->pdo->prepare($sql);
+$result = $stmt->execute(array($nome, $sexo, $data));
+
+Exemplo3 execute();
+$sql = "INSERT INTO pessoa (nome, idade, email) VALUES (:nome, :idade, :email)";
+stmt = $pdo->prepare($sql);
+$stmt->bindValue(":nome", "Fulaninho");
+$stmt->bindValue(":idade", "99");
+$stmt->bindValue(":email", "fulaninho@fulanoDeTal.com");
+$stme->execute();
+
+Exemplo4 execute();
+$sql = "INSERT INTO pessoa (nome, idade, email) VALUES (:nome, :idade, :email)";
+$stmt= $pdo->prepare($sql);
+$result = $stmt->execute(array(':nome' => $nome, ':idade' => $idade, ':email' => $email));
+*/
