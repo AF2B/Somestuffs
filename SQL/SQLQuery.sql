@@ -12,10 +12,9 @@ Informações adicionais -> firstName & lastName*/
 
 /*#Resposta ->*/ SELECT firstName, lastName FROM person.person;
 
-SELECT DISTINCT coluna1,coluna2 FROM tabela -- O Comando DISTINCT remove informações duplicadas
-de uma tabela.
+SELECT DISTINCT coluna1,coluna2 FROM tabela -- O Comando DISTINCT remove informações duplicadas de uma tabela.
 
-Desafio[1] => Quantos nomes e sobrenomes únicos temos em nossa tabela person.person?
+-- Desafio[1] => Quantos nomes e sobrenomes únicos temos em nossa tabela person.person?
 
 /*#Resposta ->*/ SELECT DISTINCT firstName, lastName FROM person.person;
 
